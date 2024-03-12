@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrow Key Game</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .arrow-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .arrow {
+        font-size: 60px;
+        margin: 10px;
+      }
+
+      .green {
+        color: green;
+      }
+
+      .red {
+        color: red;
+      }
+
+      .timer {
+        margin-top: 20px;
+        font-size: 24px;
+      }
+
+      .setName {
+        font-size: 60px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #set-selector {
+        font-size: 30px;
+        margin-bottom: 10px;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div id="set-name" class="setName"></div>
+    </div>
+    <div>
+      <select id="set-selector">
+        <option style="font-size:30px;" value="Machine Gun">Machine Gun</option>
+        <option style="font-size:30px;" value="Anti-Materiel Rifle">Anti-Materiel Rifle</option>
+        <option style="font-size:30px;" value="Stalwart">Stalwart</option>
+        <option style="font-size:30px;" value="Expendable Anti-Tank">Expendable Anti-Tank</option>
+        <option style="font-size:30px;" value="Recoilless Rifle">Recoilless Rifle</option>
+        <option style="font-size:30px;" value="Flamethrower">Flamethrower</option>
+        <option style="font-size:30px;" value="Autocannon">Autocannon</option>
+        <option style="font-size:30px;" value="Railgun">Railgun</option>
+        <option style="font-size:30px;" value="Spear">Spear</option>
+        <option style="font-size:30px;" value="Orbital Gatling Barrage">Orbital Gatling Barrage</option>
+        <option style="font-size:30px;" value="Orbital Airburst Strike">Orbital Airburst Strike</option>
+        <option style="font-size:30px;" value="Orbital 120MM HE Barrage">Orbital 120MM HE Barrage</option>
+        <option style="font-size:30px;" value="Orbital 380MM HE Barrage">Orbital 380MM HE Barrage</option>
+        <option style="font-size:30px;" value="Orbital Walking Barrage">Orbital Walking Barrage</option>
+        <option style="font-size:30px;" value="Orbital Laser">Orbital Laser</option>
+        <option style="font-size:30px;" value="Orbital Railcannon Strike">Orbital Railcannon Strike</option>
+        <option style="font-size:30px;" value="Eagle Strafing Run">Eagle Strafing Run</option>
+        <option style="font-size:30px;" value="Eagle Airstrike">Eagle Airstrike</option>
+        <option style="font-size:30px;" value="Eagle Cluster Bomb">Eagle Cluster Bomb</option>
+        <option style="font-size:30px;" value="Eagle Napalm Airstrike">Eagle Napalm Airstrike</option>
+        <option style="font-size:30px;" value="Jump Pack">Jump Pack</option>
+        <option style="font-size:30px;" value="Eagle Smoke Strike">Eagle Smoke Strike</option>
+        <option style="font-size:30px;" value="Eagle 110MM Rocket Pods">Eagle 110MM Rocket Pods</option>
+        <option style="font-size:30px;" value="Eagle 500KG Bomb">Eagle 500KG Bomb</option>
+        <option style="font-size:30px;" value="Orbital Precision Strike">Orbital Precision Strike</option>
+        <option style="font-size:30px;" value="Orbital Gas Strike">Orbital Gas Strike</option>
+        <option style="font-size:30px;" value="Orbital EMS Strike">Orbital EMS Strike</option>
+        <option style="font-size:30px;" value="Orbital Smoke Strike">Orbital Smoke Strike</option>
+        <option style="font-size:30px;" value="HMG Emplacement">HMG Emplacement</option>
+        <option style="font-size:30px;" value="Shield Generator Relay">Shield Generator Relay</option>
+        <option style="font-size:30px;" value="Tesla Tower">Tesla Tower</option>
+        <option style="font-size:30px;" value="Anti-Personnel Minefield">Anti-Personnel Minefield</option>
+        <option style="font-size:30px;" value="Supply Pack">Supply Pack</option>
+        <option style="font-size:30px;" value="Grenade Launcher">Grenade Launcher</option>
+        <option style="font-size:30px;" value="Laser Cannon">Laser Cannon</option>
+        <option style="font-size:30px;" value="Incendiary Mines">Incendiary Mines</option>
+        <option style="font-size:30px;" value="Guard Dog Rover">Guard Dog Rover</option>
+        <option style="font-size:30px;" value="Ballistic Shield Backpack">Ballistic Shield Backpack</option>
+        <option style="font-size:30px;" value="Arc Thrower">Arc Thrower</option>
+        <option style="font-size:30px;" value="Shield Generator Pack">Shield Generator Pack</option>
+        <option style="font-size:30px;" value="Machine Gun Sentry">Machine Gun Sentry</option>
+        <option style="font-size:30px;" value="Gatling Sentry">Gatling Sentry</option>
+        <option style="font-size:30px;" value="Mortar Sentry">Mortar Sentry</option>
+        <option style="font-size:30px;" value="Guard Dog">Guard Dog</option>
+        <option style="font-size:30px;" value="Autocannon Sentry">Autocannon Sentry</option>
+        <option style="font-size:30px;" value="Rocket Sentry">Rocket Sentry</option>
+        <option style="font-size:30px;" value="EMS Mortar Sentry">EMS Mortar Sentry</option>
+        <option style="font-size:30px;" value="SOS Beacon">SOS Beacon</option>
+        <option style="font-size:30px;" value="Resupply">Resupply</option>
+        <option style="font-size:30px;" value="Reinforce" selected>Reinforce</option>
+        <option style="font-size:30px;" value="Hellbomb">Hellbomb</option>
+    </select>
+    
+    </div>
+    <div id="arrow-container" class="arrow-container"></div>
+    <div id="timer" class="timer">Time: 0 s</div>
+    <script>
+      const arrowSets = {
+        "Machine Gun": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowRight",
+        ],
+        "Anti-Materiel Rifle": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowDown",
+        ],
+        Stalwart: [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowUp",
+          "ArrowLeft",
+        ],
+        "Expendable Anti-Tank": [
+          "ArrowDown",
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowRight",
+        ],
+        "Recoilless Rifle": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowLeft",
+        ],
+        Flamethrower: [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowDown",
+          "ArrowUp",
+        ],
+        Autocannon: [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowUp",
+          "ArrowRight",
+        ],
+        Railgun: [
+          "ArrowDown",
+          "ArrowRight",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowRight",
+        ],
+        Spear: ["ArrowDown", "ArrowDown", "ArrowUp", "ArrowDown", "ArrowDown"],
+        "Orbital Gatling Barrage": [
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowUp",
+        ],
+        "Orbital Airburst Strike": ["ArrowRight", "ArrowRight", "ArrowRight"],
+        "Orbital 120MM HE Barrage": [
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowDown",
+        ],
+        "Orbital 380MM HE Barrage": [
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowDown",
+        ],
+        "Orbital Walking Barrage": [
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowDown",
+        ],
+        "Orbital Laser": [
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowDown",
+        ],
+        "Orbital Railcannon Strike": [
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowDown",
+          "ArrowDown",
+          "ArrowRight",
+        ],
+        "Eagle Strafing Run": ["ArrowUp", "ArrowRight", "ArrowRight"],
+        "Eagle Airstrike": ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowRight"],
+        "Eagle Cluster Bomb": [
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowDown",
+          "ArrowRight",
+        ],
+        "Eagle Napalm Airstrike": [
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowUp",
+        ],
+        "Jump Pack": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowUp",
+          "ArrowDown",
+          "ArrowUp",
+        ],
+        "Eagle Smoke Strike": ["ArrowUp", "ArrowRight", "ArrowUp", "ArrowDown"],
+        "Eagle 110MM Rocket Pods": [
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowLeft",
+        ],
+        "Eagle 500KG Bomb": [
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowDown",
+          "ArrowDown",
+        ],
+        "Orbital Precision Strike": ["ArrowRight", "ArrowRight", "ArrowUp"],
+        "Orbital Gas Strike": [
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowRight",
+        ],
+        "Orbital EMS Strike": [
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowLeft",
+          "ArrowDown",
+        ],
+        "Orbital Smoke Strike": [
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowUp",
+        ],
+        "HMG Emplacement": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowLeft",
+        ],
+        "Shield Generator Relay": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowRight",
+          "ArrowRight",
+        ],
+        "Tesla Tower": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowRight",
+        ],
+        "Anti-Personnel Minefield": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowRight",
+        ],
+        "Supply Pack": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowUp",
+          "ArrowDown",
+        ],
+        "Grenade Launcher": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowDown",
+        ],
+        "Laser Cannon": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowLeft",
+        ],
+        "Incendiary Mines": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowLeft",
+          "ArrowDown",
+        ],
+        "Guard Dog Rover": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowRight",
+        ],
+        "Ballistic Shield Backpack": [
+          "ArrowDown",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowUp",
+          "ArrowRight",
+        ],
+        "Arc Thrower": [
+          "ArrowDown",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowDown",
+        ],
+        "Shield Generator Pack": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowLeft",
+          "ArrowRight",
+        ],
+        "Machine Gun Sentry": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowUp",
+        ],
+        "Gatling Sentry": ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"],
+        "Mortar Sentry": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowDown",
+        ],
+        "Guard Dog": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowDown",
+        ],
+        "Autocannon Sentry": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowUp",
+        ],
+        "Rocket Sentry": [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowRight",
+          "ArrowLeft",
+        ],
+        "EMS Mortar Sentry": [
+          "ArrowDown",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowUp",
+          "ArrowLeft",
+        ],
+        "SOS Beacon": ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowUp"],
+        Resupply: ["ArrowDown", "ArrowDown", "ArrowUp", "ArrowRight"],
+        Reinforce: [
+          "ArrowUp",
+          "ArrowDown",
+          "ArrowRight",
+          "ArrowLeft",
+          "ArrowUp",
+        ],
+        Hellbomb: [
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowDown",
+          "ArrowUp",
+          "ArrowRight",
+          "ArrowDown",
+          "ArrowUp",
+        ],
+      };
+
+      const numArrows = 5; // Maximum length of arrow sets
+      let currentArrows = [];
+      let currentIndex = 0;
+      let startTime;
+
+      function displayArrows(setName) {
+        currentArrows = arrowSets[setName];
+        currentIndex = 0;
+        const arrowContainer = document.getElementById("arrow-container");
+        arrowContainer.innerHTML = ""; // Clear previous arrows
+        currentArrows.forEach((arrowKey, index) => {
+          const arrowElement = document.createElement("div");
+          arrowElement.textContent = getArrowEmoji(arrowKey);
+          arrowElement.classList.add("arrow");
+          arrowContainer.appendChild(arrowElement);
+        });
+        document.getElementById("set-name").textContent = `${setName}`;
+      }
+
+      function getArrowEmoji(arrowKey) {
+        switch (arrowKey) {
+          case "ArrowUp":
+            return "▲";
+          case "ArrowDown":
+            return "▼";
+          case "ArrowLeft":
+            return "◀";
+          case "ArrowRight":
+            return "▶";
+          default:
+            return "";
+        }
+      }
+
+      function checkArrow(key) {
+        if (currentIndex === 0) {
+          startTime = Date.now(); // Start timer when the first key is pressed
+        }
+        if (key === currentArrows[currentIndex]) {
+          document
+            .querySelectorAll(".arrow")
+            [currentIndex].classList.add("green");
+          currentIndex++;
+          if (currentIndex === currentArrows.length) {
+            // Check if reached the end of the current arrow set
+            const endTime = Date.now();
+            const elapsedTime = (endTime - startTime) / 1000;
+            document.getElementById(
+              "timer"
+            ).textContent = `Time: ${elapsedTime.toFixed(2)} s`;
+            setTimeout(() => {
+              displayArrows(document.getElementById("set-selector").value); // Start over with the selected set after a delay
+            }, 1000);
+          }
+        } else {
+          document
+            .querySelectorAll(".arrow")
+            [currentIndex].classList.add("red");
+          setTimeout(() => {
+            displayArrows(document.getElementById("set-selector").value); // Start over with the selected set after a delay
+          }, 1000);
+        }
+      }
+
+      document.addEventListener("keydown", (event) => {
+        checkArrow(event.key);
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        displayArrows(document.getElementById("set-selector").value);
+      });
+
+      document.getElementById("set-selector").addEventListener("change", () => {
+        displayArrows(document.getElementById("set-selector").value);
+      });
+    </script>
+  </body>
+</html>
